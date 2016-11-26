@@ -3,8 +3,8 @@ import jenkins.model.*
 def inst = Jenkins.getInstance()
 def desc = inst.getDescriptor("org.jenkinsci.plugins.workflow.libs.GlobalLibraries")
 
-def remote = "git@bitbucket.org:thuron_llc/cicd-pipeline.git"
-def credentialsId = 'bitbucket-id'
+def remote = "https://github.com/glonnon/jenkins-pipeline-global-libs-demo.git"
+def credentialsId = null
 def includes = null
 def excludes = null
 def ignoreOnPushNotification = true
