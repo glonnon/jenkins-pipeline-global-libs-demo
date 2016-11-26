@@ -1,7 +1,6 @@
 package org.thuron
 
 class Docker implements Serializable {
-
     def steps
     def Docker(steps) { this.steps} 
     def run(args = "") {

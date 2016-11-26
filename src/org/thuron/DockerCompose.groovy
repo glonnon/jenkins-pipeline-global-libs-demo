@@ -1,7 +1,6 @@
 package org.thuron
 
 class DockerCompose implements Serializable {
-
     def steps
     def DockerCompose(steps) { this.steps} 
     def up(args = "") {

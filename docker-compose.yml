@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+   jenkins:
+     build: 
+      dockerfile: Dockerfile
+      context: jenkins
+      args:
+        JENKINS_PLUGINS: envinject workflow-aggregator job-dsl git matrix-auth token-macro dockerhub-notification docker-plugin
+        JENKINS_BETA_PLUGINS: blueocean
+     volumes:
+       - /var/jenkins_home:$PWD/data
+     ports:
+     - "11080:8080"
+     environment:
+     - JAVA_OPTS=-Djenkins.install.runSetupWizard=false

@@ -1,7 +1,6 @@
 package org.thuron
 
 class Make implements Serializable {
-
     def steps
     def Make(steps) { this.steps} 
     def all(args = "") {
