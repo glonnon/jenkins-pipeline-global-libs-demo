@@ -1,6 +1,8 @@
 def services = ['test']
 def stacks = ['review','integration','staging','performance']
 
+// note: this is only for demo purposes...
+def gitRepo = 'https://github.com/glonnon/jenkins-pipeline-global-libs-demo.git'
 
 services.each {
     serviceName = it
@@ -13,11 +15,11 @@ services.each {
         // all others are stored in the operations repository
         // allows for seperation of concern/security/accountablity/etc...
 
-        if ((stacks == 'review') || (stacks == 'integration')) {
-            pipelineJob('example') {
+        if ((stackName == 'review') || (stackName == 'integration')) {
+            pipelineJob(stackName) {
                 definition {
                     cps {
-                        script(readFileFromWorkspace('Jenkinsfile_${stack}'))
+                        script(readFileFromWorkspace('Jenkinsfile_${stackName}'))
                         sandbox()
                     }
                 }
@@ -28,9 +30,9 @@ services.each {
                 definition {
                     cpsScm {
                         scm { 
-                            git
+                            git {gitRepo,stackName)
                         }
-                        scriptPath('cicd/Jenkinsfile_${stack}')
+                        scriptPath('cicd/Jenkinsfile_${stackName}')
                     }
                 }
             }
@@ -42,9 +44,11 @@ services.each {
     // all releases are done on a branch
 
     multibranchPipelineJob('example') {
+        cron "2 * * * *"
         branchSources {
             git {
-                remote('https://github.com/jenkinsci/job-dsl-plugin.git')
+                remote gitRepo
+                includes 'releases/**'
         }
     }
     orphanedItemStrategy {
