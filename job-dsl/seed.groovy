@@ -13,7 +13,7 @@ services.each {
         // all others are stored in the operations repository
         // allows for seperation of concern/security/accountablity/etc...
 
-        if (stacks == 'review') || (stacks == 'integration') {
+        if ((stacks == 'review') || (stacks == 'integration')) {
             pipelineJob('example') {
                 definition {
                     cps {
