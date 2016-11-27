@@ -41,12 +41,10 @@ services.each {
     // release multibranch
     // all releases are done on a branch
 
-multibranchPipelineJob('example') {
-    branchSources {
-        git {
-            remote('https://github.com/jenkinsci/job-dsl-plugin.git')
-            credentialsId('github-ci')
-            includes('releases')
+    multibranchPipelineJob('example') {
+        branchSources {
+            git {
+                remote('https://github.com/jenkinsci/job-dsl-plugin.git')
         }
     }
     orphanedItemStrategy {
