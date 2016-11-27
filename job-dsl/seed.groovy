@@ -26,11 +26,11 @@ services.each {
             }
         } 
         else {
-            pipelineJob('example') {
+            pipelineJob('${stackName}-deploy') {
                 definition {
                     cpsScm {
                         scm { 
-                            git {gitRepo,stackName)
+                            git(gitRepo,stackName)
                         }
                         scriptPath('cicd/Jenkinsfile_${stackName}')
                     }
