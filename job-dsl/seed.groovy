@@ -42,7 +42,7 @@ services.each {
 
     // release multibranch
     // all releases are done on a branch
-
+/*
     multibranchPipelineJob(serviceName) {
         triggers { 
             cron "2 * * * *"
@@ -59,4 +59,5 @@ services.each {
             }
         }
     }
+    */
 }
