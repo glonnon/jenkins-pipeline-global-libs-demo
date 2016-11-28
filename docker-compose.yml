@@ -14,3 +14,9 @@ services:
      - "11080:8080"
      environment:
      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+
+  gogs:
+    image: gogs/gogs
+    ports:
+    - "10080:3000"
+    - "10022:22"

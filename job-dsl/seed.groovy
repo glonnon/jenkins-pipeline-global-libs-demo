@@ -1,4 +1,28 @@
 def services = ['test']
+
+class Pipeline {
+    String serviceName
+    String description
+    String branch
+    String gitRepo
+}
+
+
+def services = [ 
+    new Pipeline(serviceName: 'test',
+        description: 'test stack for cicd',
+        description
+
+        
+
+
+]
+
+class Stacks {
+    String stackName
+    String stackDescription
+}
+
 def stacks = ['review','integration','staging','performance']
 def stacksDesc = [ 
         """ review is the code review stack, it insures the code review compiles and passes smoke testing and 
