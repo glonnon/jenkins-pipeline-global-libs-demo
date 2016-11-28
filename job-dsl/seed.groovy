@@ -16,7 +16,9 @@ services.each {
     folderName = serviceName
     folder (folderName) 
     def curFolder = folderName
+    def index = 0
     stacks.each {
+        index++
         stackName = it
 
         // review and integration Jenkinsfiles are stored in the source repository
@@ -25,12 +27,14 @@ services.each {
 
         if ((stackName == 'review') || (stackName == 'integration')) {
             pipelineJob("$curFolder/$stackName") {
+                description(stacksDesc[index])
                 definition {
                     cps {
                         script("Jenkinsfile_$stackName")
                         sandbox()
                     }
                 }
+                compressBuildLog()
             }
         } 
         else {
