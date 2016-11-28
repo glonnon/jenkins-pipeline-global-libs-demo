@@ -19,7 +19,7 @@ services.each {
             pipelineJob(stackName) {
                 definition {
                     cps {
-                        script(readFileFromWorkspace('Jenkinsfile_${stackName}'))
+                        script('Jenkinsfile_${stackName}')
                         sandbox()
                     }
                 }
@@ -43,19 +43,18 @@ services.each {
     // release multibranch
     // all releases are done on a branch
 
-    multibranchPipelineJob('example') {
+    multibranchPipelineJob('$serviceName') {
         cron "2 * * * *"
         branchSources {
             git {
                 remote gitRepo
                 includes 'releases/**'
+            }
+        }
+        orphanedItemStrategy {
+            discardOldItems {
+                numToKeep(20)
+            }
         }
     }
-    orphanedItemStrategy {
-        discardOldItems {
-            numToKeep(20)
-        }
-    }
-}
-
 }
