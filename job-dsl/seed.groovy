@@ -44,7 +44,7 @@ services.each {
     // all releases are done on a branch
 
     multibranchPipelineJob('$serviceName') {
-        trigger { 
+        triggers { 
             cron "2 * * * *"
         }
         branchSources {
