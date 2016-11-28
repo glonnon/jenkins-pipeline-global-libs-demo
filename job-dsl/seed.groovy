@@ -19,20 +19,20 @@ services.each {
             pipelineJob(stackName) {
                 definition {
                     cps {
-                        script('Jenkinsfile_${stackName}')
+                        script('Jenkinsfile')
                         sandbox()
                     }
                 }
             }
         } 
         else {
-            pipelineJob('${stackName}-deploy') {
+            pipelineJob(stackName) {
                 definition {
                     cpsScm {
                         scm { 
                             git(gitRepo,stackName)
                         }
-                        scriptPath('cicd/Jenkinsfile_${stackName}')
+                        scriptPath('cicd/Jenkinsfile')
                     }
                 }
             }
