@@ -12,8 +12,8 @@ def stacksDesc = [
 def gitRepo = 'https://github.com/glonnon/jenkins-pipeline-global-libs-demo.git'
 
 def setEnvironmentVariables(dslFactory, stackName,serviceName) {
-    dslFactory.env('STACK_NAME',stackName)
-    dslFactory.env('SERVICE_NAME',serviceName)
+  //  dslFactory.env('STACK_NAME',stackName)
+  //  dslFactory.env('SERVICE_NAME',serviceName)
 }
 
 services.each {
