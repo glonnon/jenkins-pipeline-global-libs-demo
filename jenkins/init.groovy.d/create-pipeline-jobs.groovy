@@ -9,6 +9,10 @@ def pipeline = """
         git "https://github.com/glonnon/jenkins-pipeline-global-libs-demo.git"
         sh 'ls'
         jobDsl targets: 'job-dsl/seed.groovy' 
+
+        jobDsl targets: 'job-dsl/seed.groovy',
+           removedJobAction: 'DELETE',
+           removedViewAction: 'DELETE',
     }
 """
 job.definition = new org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition(pipeline, true)
