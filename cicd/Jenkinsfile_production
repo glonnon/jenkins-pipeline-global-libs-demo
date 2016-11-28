@@ -1,0 +1,3 @@
+node {
+       echo "hello ${env.STACK_NAME} ${env.SERVICE_NAME}"
+}
