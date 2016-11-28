@@ -1,5 +1,12 @@
 def services = ['test']
 def stacks = ['review','integration','staging','performance']
+def stacksDesc = [ 
+        """ review is the code review stack, it insures the code review compiles and passes smoke testing and 
+            does statically analysis on the changes""",
+        """ integration is responsbile for integrating changes into the master branch""",
+        """ staging is the stack used for all system and acceptance testing occurs.""",
+        """ performance should only be used for performance testing, and deployed when needed. """
+]
 
 // note: this is only for demo purposes...
 def gitRepo = 'https://github.com/glonnon/jenkins-pipeline-global-libs-demo.git'
