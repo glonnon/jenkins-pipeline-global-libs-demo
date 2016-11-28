@@ -8,6 +8,7 @@ services.each {
     serviceName = it
     folderName = serviceName
     folder (folderName) 
+    def curFolder = folderName
     stacks.each {
         stackName = it
 
@@ -16,23 +17,23 @@ services.each {
         // allows for seperation of concern/security/accountablity/etc...
 
         if ((stackName == 'review') || (stackName == 'integration')) {
-            pipelineJob(stackName) {
+            pipelineJob("$curFolder/$stackName") {
                 definition {
                     cps {
-                        script('Jenkinsfile')
+                        script("Jenkinsfile_$stackName")
                         sandbox()
                     }
                 }
             }
         } 
         else {
-            pipelineJob(stackName) {
+            pipelineJob("$curFolder/$stackName") {
                 definition {
                     cpsScm {
                         scm { 
                             git(gitRepo,stackName)
                         }
-                        scriptPath('cicd/Jenkinsfile')
+                        scriptPath("cicd/Jenkinsfile_$stackName")
                     }
                 }
             }
