@@ -36,6 +36,9 @@ services.each {
                 setEnvironmentVariables(this,stackName,serviceName)
                 definition {
                     cpsScm {
+                         scm { 
+                            git(gitRepo,"master") // TODO: for reviews, we need to do this someplace else...
+                        }
                         scriptPath("Jenkinsfile_$stackName")
                     }
                 }
