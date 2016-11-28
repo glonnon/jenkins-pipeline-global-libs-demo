@@ -11,9 +11,9 @@ def stacksDesc = [
 // note: this is only for demo purposes...
 def gitRepo = 'https://github.com/glonnon/jenkins-pipeline-global-libs-demo.git'
 
-def setEnvironmentVariables(stackName,serviceName) {
-    env('STACK_NAME',stackName)
-    env('SERVICE_NAME',serviceName)
+def setEnvironmentVariables(dslFactory, stackName,serviceName) {
+    dslFactory.env('STACK_NAME',stackName)
+    dslFactory.env('SERVICE_NAME',serviceName)
 }
 
 services.each {
@@ -33,7 +33,7 @@ services.each {
         if ((stackName == 'review') || (stackName == 'integration')) {
             pipelineJob("$curFolder/$stackName") {
                 description(stacksDesc[index])
-                setEnvironmentVariables(stackName,serviceName)
+                setEnvironmentVariables(this,stackName,serviceName)
                 definition {
                     cpsScm {
                         scriptPath("Jenkinsfile_$stackName")
@@ -44,7 +44,7 @@ services.each {
         else {
             pipelineJob("$curFolder/$stackName") {
                 description(stacksDesc[index])
-                setEnvironmentVariables(stackName,serviceName)
+                setEnvironmentVariables(this,stackName,serviceName)
                 definition {
                     cpsScm {
                         scm { 
